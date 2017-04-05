@@ -12,6 +12,6 @@ exports.makeHtmlNotes = functions.database.ref(itemRef)
     .onWrite(event => {
       const item = event.data.val();
       return event.data.adminRef.update({
-        notesMD: converter.makeHtml(item.notes),
+        notes_md: converter.makeHtml(item.notes),
       });
 });
