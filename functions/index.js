@@ -1,6 +1,6 @@
 const functions = require('firebase-functions');
 
-const itemRef = "/data/{userId}/items/{itemId}"
+const itemRef = "/data/{userId}/items/{date}/{itemId}"
 const TMP_DIR = '/tmp/';
 
 /**
