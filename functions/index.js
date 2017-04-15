@@ -40,7 +40,7 @@ exports.generateThumbnail = functions.database.ref(itemRef)
       const prefix = 'thumb_';
       const fileName = `${prefix}${event.params.itemId}`
       const filePath = `${TMP_DIR}${fileName}.png`
-      const dest = `${event.params.itemId}/thumb.png`
+      const dest = `${event.params.userId}/items/${event.params.date}/${event.params.itemId}/thumb.png`
 
       console.log("File path: " + filePath)
 
@@ -48,8 +48,8 @@ exports.generateThumbnail = functions.database.ref(itemRef)
       console.log("preparing to uploading to: " + functions.config().bucket.name)
       mkdirp(TMP_DIR).then(() => {
         console.log("create temporary directory at: " + TMP_DIR)
-        new pageres({delay: 3, filename: fileName})
-          .src(item.url, ['1200x1000'], {crop: true})
+        new pageres({delay: 2, filename: fileName})
+          .src(item.url, ['1280x720'], {crop: true})
           .dest(TMP_DIR)
           .run()
           .then(() => {
