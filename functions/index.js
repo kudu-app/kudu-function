@@ -57,8 +57,14 @@ exports.generateThumbnail = functions.database.ref(itemRef)
             bucket.upload(filePath, {
               destination: dest
             }).then(() => {
-              console.log('thumbnail uploaded to', filePath);
+              console.log('thumbnail uploaded to: ', dest);
+            }, function(err) {
+              console.log("failed uploading thumbnail to: " + dest)
+              console.log(err)
             });
+          }, function(err) {
+              console.log("failed capturing screenshoot on: " + item.url)
+              console.log(err)
           });
       });
 });
